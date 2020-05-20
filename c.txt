@@ -1,1 +1,44 @@
-xxx
+等值（term查询：QueryBuilders.termQuery(name,value);
+多值(terms)查询:QueryBuilders.termsQuery(name,value,value2,value3...);
+范围（range)查询：QueryBuilders.rangeQuery(name).gte(value).lte(value);
+存在(exists)查询:QueryBuilders.existsQuery(name);
+模糊(wildcard)查询:QueryBuilders.wildcardQuery(name,+value+);
+组合（bool）查询: BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
+
+
+主机清单（host inventory）：指定操作的主机，是一个配置文件里面定义监控的主机；：定义ansible管理的主机策略，
+默认是在ansible的hosts配置文件中定义被管节点，同时也支持自定义动态主机清单和指定配置文件路径。
+
+playbook：定义ansible任务的配置文件，可以将多个任务定义在一个剧本中，由ansible自动执行，剧本执行支持多个任务，可以由控制主机运行多个任务，同时对多台远程主机进行管理，playbook是ansible的配置、部署和编排语言，可以描述一个你想要的远程系统执行策略，或一组步骤的一般过程
+
+ansible webserver -f 3 -m shell -a "ls/root"
+/**
+webserver 服务组名
+-f 3 相当于多线程，f是参数名，3是线程数量
+-m shell 命令模式，shell 表示是shell 命令，此处可以设置成别的，
+比如 -m copy ,-m ping , -m command, -m raw , -m fetch,-m file ,-m yum(安装包管理模块),
+-m service(用于service服务管理),-m cron
+-m user,-m group,-m script,-m get_url(该模块主要用于从http、ftp、https服务器上下载文件),
+-m synchronize
+-a "ls/root" 需要执行对应模块的命令
+
+
+others mark：
+-i 目标主机列表  -m 指定模块名称
+*/
+
+ansible-playbook config_hosts.yml 运行剧本
+/**
+config_hosts.yml 就是 playbook
+https://www.cnblogs.com/chenxianpao/p/7360349.html
+*/
+
+https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html
+
+Jinja2 是 Ansible 模板的首选语言。它非常简单，很容易阅读和书写。
+
+playbook -> role -> [ main-task-jianjia2]  同时环境变量可以从设置好的变量文件里获取 maybe？？？
+
+reference:
+https://github.com/ansible/ansible-examples
+http://www.ansible.com.cn/
